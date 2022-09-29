@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/alunos")
@@ -22,8 +24,24 @@ public class AlunoController {
     public ResponseEntity<Aluno> create(@RequestBody Aluno aluno){
         Aluno alunoCreated = service.create(aluno);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(alunoCreated.getId()).toUri();
+        return ResponseEntity.status(201).body(alunoCreated);
+    }
 
-        return ResponseEntity.created(uri).body(alunoCreated);
+    @GetMapping("/all")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Aluno> findAll(){
+        return service.findAll();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Aluno> findById(@PathVariable Long id){
+        return service.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id){
+        service.delete(id);
     }
 }
