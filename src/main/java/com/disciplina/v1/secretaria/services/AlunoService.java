@@ -1,7 +1,7 @@
-package com.disciplina.backend.services;
+package com.disciplina.v1.secretaria.services;
 
-import com.disciplina.backend.models.Aluno;
-import com.disciplina.backend.repositories.AlunoRepository;
+import com.disciplina.v1.secretaria.models.Aluno;
+import com.disciplina.v1.secretaria.repositories.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
